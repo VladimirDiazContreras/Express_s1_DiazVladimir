@@ -1,0 +1,22 @@
+{
+  "name": "express_s1_diazvladimir",
+  "version": "1.0.0",
+  "description": "holsa",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VladimirDiazContreras/Express_s1_DiazVladimir.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VladimirDiazContreras/Express_s1_DiazVladimir/issues"
+  },
+  "homepage": "https://github.com/VladimirDiazContreras/Express_s1_DiazVladimir#readme",
+  "dependencies": {
+    "expres": "^0.0.5"
+  }
+}
