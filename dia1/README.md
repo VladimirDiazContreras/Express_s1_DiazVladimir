@@ -8,46 +8,43 @@ http://localhost:3000/api-docs
 
 ### Ver todos los trainers
 
-curl -X GET http://localhost:3000/coordinador/trainers
+curl -X GET "localhost:3000/coordinador/trainers"
 
 
 ### Ver todos los campers
 
-curl -X GET http://localhost:3000/coordinador/campers
+curl -X GET "localhost:3000/coordinador/campers"
 
 
 ## trainers
 ### Ver un trainer por ID
 
-curl -X GET http://localhost:3000/trainers/1
+curl -X 'GET' \
+  'localhost:3000/trainers/456' \
+  -H 'accept: */*'
+
+### Eliminar un trainer
+
+curl -X DELETE "localhost:3000/trainers/id"
 
 
 ### Actualizar nombre de un trainer
 
-curl -X PUT http://localhost:3000/trainers/1 \
-  -H "Content-Type: application/json" \
-  -d '{"nombre": "NuevoNombre"}'
-
-
-### Eliminar un trainer
-
-curl -X DELETE http://localhost:3000/trainers/1
+falta
 
 ## Camper
 
 ### Ver un camper por ID
 
-curl -X GET http://localhost:3000/campers/1
-
-
-### Actualizar riesgo de un camper
-
-curl -X PUT http://localhost:3000/campers/1 \
-  -H "Content-Type: application/json" \
-  -d '{"riesgo": "Alto"}'
+curl -X GET http://localhost:3000/campers/id
 
 
 ### Eliminar un camper
 
-curl -X DELETE http://localhost:3000/campers/1
+curl -X DELETE http://localhost:3000/campers/id
+
+### Actualizar riesgo de un camper
+
+falta
+
 
