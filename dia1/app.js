@@ -1,11 +1,14 @@
 const express = require("express");
+const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 const conectarDB = require("./config/db");
 
 const TrainerController = require("./controllers/trainerController");
 const CamperController = require("./controllers/camperController");
 const CoordinadorController = require("./controllers/coordinadorController");
 const swaggerDocs = require("./swagger");
-const app = express();
+
 
 async function start() {
   try {

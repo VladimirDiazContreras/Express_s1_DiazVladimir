@@ -37,7 +37,7 @@ paths:
             schema:
               type: object
               properties:
-                nombre:
+                nuevoNombre:
                   type: string
       responses:
         "200":
@@ -85,7 +85,7 @@ paths:
             schema:
               type: object
               properties:
-                riesgo:
+                nuevoRiesgo:
                   type: string
                   enum: [alto, medio, bajo]
       responses:

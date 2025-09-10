@@ -47,4 +47,6 @@ curl -X DELETE http://localhost:3000/campers/id
 
 falta
 
-
+curl -X PUT http://localhost:3000/trainers/456 \
+  -H "Content-Type: application/json" \
+  -d '{"nuevoNombre":"Vladimir"}'
