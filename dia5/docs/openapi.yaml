@@ -1,0 +1,112 @@
+openapi: 3.0.0
+info:
+  title: API CRUD Usuarios
+  version: 1.0.0
+  description: Documentación OpenAPI para el servicio de usuarios
+servers:
+  - url: http://localhost:3000/api
+
+tags:
+  - name: Users
+    description: API de gestión de usuarios
+
+components:
+  schemas:
+    User:
+      type: object
+      required:
+        - name
+        - email
+      properties:
+        id:
+          type: string
+          description: ID generado por MongoDB
+        name:
+          type: string
+          description: Nombre del usuario
+        email:
+          type: string
+          description: Correo único del usuario
+        age:
+          type: number
+          description: Edad del usuario
+      example:
+        name: Juan Pérez
+        email: juan@example.com
+        age: 25
+
+paths:
+  /users:
+    get:
+      summary: Listar usuarios (máximo 10)
+      tags: [Users]
+      responses:
+        "200":
+          description: Lista de usuarios
+    post:
+      summary: Crear un nuevo usuario
+      tags: [Users]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        "201":
+          description: Usuario creado
+        "400":
+          description: Error de validación
+
+  /users/{id}:
+    get:
+      summary: Obtener un usuario por ID
+      tags: [Users]
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID del usuario
+      responses:
+        "200":
+          description: Usuario encontrado
+        "404":
+          description: Usuario no encontrado
+    put:
+      summary: Actualizar un usuario
+      tags: [Users]
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID del usuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        "200":
+          description: Usuario actualizado
+        "404":
+          description: Usuario no encontrado
+    delete:
+      summary: Eliminar un usuario
+      tags: [Users]
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID del usuario
+      responses:
+        "200":
+          description: Usuario eliminado
+        "404":
+          description: Usuario no encontrado

@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/VladimirDiazContreras/Express_s1_DiazVladimir#readme",
   "dependencies": {
-    "expres": "^0.0.5"
+    "expres": "^0.0.5",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
   }
 }
