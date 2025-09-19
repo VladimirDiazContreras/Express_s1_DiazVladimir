@@ -1,13 +1,31 @@
-const express = require("express");
-const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-const CamperModel = require("../models/camperModel");
-const camperViews = require("../views/camperViews");
+import CamperModel from "../models/camperModel.js";
+import camperViews from "../views/camperViews.js";
 
-class CamperController {
+export default class CamperController {
+  static async registrar(req, res) {
+    try {
+      const camperModel = new CamperModel();
+      const { nombre, email, password, riesgo } = req.body;
+      const nuevoCamper = await camperModel.registerCamper({ nombre, email, password, riesgo });
+      res.status(201).send({ message: "Camper registrado con éxito", camper: nuevoCamper });
+    } catch (error) {
+      res.status(400).send({ error: error.message });
+    }
+  }
+
+  static async login(req, res) {
+    try {
+      const camperModel = new CamperModel();
+      const { email, password } = req.body;
+      const camper = await camperModel.loginCamper(email, password);
+      res.send({ message: "Login exitoso", camper });
+    } catch (error) {
+      res.status(401).send({ error: error.message });
+    }
+  }
+
   static async gestionar(req, res) {
-    const camperModel = new CamperModel(req.db);
+    const camperModel = new CamperModel();
     const { id } = req.params;
 
     const camper = await camperModel.findById(id);
@@ -17,7 +35,7 @@ class CamperController {
   }
 
   static async actualizarRiesgo(req, res) {
-    const camperModel = new CamperModel(req.db);
+    const camperModel = new CamperModel();
     const { id } = req.params;
     const { nuevoRiesgo } = req.body;
 
@@ -29,7 +47,7 @@ class CamperController {
   }
 
   static async eliminar(req, res) {
-    const camperModel = new CamperModel(req.db);
+    const camperModel = new CamperModel();
     const { id } = req.params;
 
     const camper = await camperModel.findById(id);
@@ -39,5 +57,3 @@ class CamperController {
     res.send(camperViews.camperEliminado());
   }
 }
-
-module.exports = CamperController;

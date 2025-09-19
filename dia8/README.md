@@ -1,52 +1,18 @@
-## Documentacion 
+mkdir models controllers && touch router.js index.js
+cd models && touch loginModel.js index.js && cd ..
+cd controllers && touch loginController.js && cd ..
 
-http://localhost:3000/api-docs
+// index.js
+import express from "express";
 
-# documentacion con curl
+const app = express();
+const PORT = 3000;
+const router = require("./router");
 
-## Coordinador
+app.use(express.json());
 
-### Ver todos los trainers
+app.use(router);
 
-curl -X GET "localhost:3000/coordinador/trainers"
-
-
-### Ver todos los campers
-
-curl -X GET "localhost:3000/coordinador/campers"
-
-
-## trainers
-### Ver un trainer por ID
-
-curl -X 'GET' \
-  'localhost:3000/trainers/456' \
-  -H 'accept: */*'
-
-### Eliminar un trainer
-
-curl -X DELETE "localhost:3000/trainers/id"
-
-
-### Actualizar nombre de un trainer
-
-falta
-
-## Camper
-
-### Ver un camper por ID
-
-curl -X GET http://localhost:3000/campers/id
-
-
-### Eliminar un camper
-
-curl -X DELETE http://localhost:3000/campers/id
-
-### Actualizar riesgo de un camper
-
-falta
-
-curl -X PUT http://localhost:3000/trainers/456 \
-  -H "Content-Type: application/json" \
-  -d '{"nuevoNombre":"Vladimir"}'
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en el puerto ${PORT}...`);
+});

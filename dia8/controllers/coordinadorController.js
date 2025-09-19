@@ -1,19 +1,17 @@
-const TrainerModel = require("../models/trainerModel");
-const CamperModel = require("../models/camperModel");
-const coordinadorViews = require("../views/coordinadorViews");
+import TrainerModel from "../models/trainerModel.js";
+import CamperModel from "../models/camperModel.js";
+import coordinadorViews from "../views/coordinadorViews.js";
 
-class CoordinadorController {
+export default class CoordinadorController {
   static async verTrainers(req, res) {
-    const trainerModel = new TrainerModel(req.db);
+    const trainerModel = new TrainerModel();
     const trainers = await trainerModel.findAll();
     res.send(coordinadorViews.listaTrainers(trainers));
   }
 
   static async verCampers(req, res) {
-    const camperModel = new CamperModel(req.db);
+    const camperModel = new CamperModel();
     const campers = await camperModel.findAll();
     res.send(coordinadorViews.listaCampers(campers));
   }
 }
-
-module.exports = CoordinadorController;
